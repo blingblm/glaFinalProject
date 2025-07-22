@@ -21,7 +21,8 @@ struct Uxn {
 std::string stripComments(const std::string &text);
 std::unordered_map<std::string, std::vector<int>> getLinesForTokens(const std::string& text);
 
-inline Token makeToken(TokenType type, int64_t val, int sz = 1, int r = 0, int k = 0, const std::string& name = "") {
+inline Token makeToken(TokenType type, int64_t val, int sz = 1, int r = 0, int k = 0,const std::string &name = "")
+{
     Token token;
     token.type = type;
     token.val = val;
