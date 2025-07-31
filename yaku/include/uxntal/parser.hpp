@@ -1,7 +1,7 @@
 #pragma once
 
-#include "tokens.hpp"  // Token 和 TokenType
-#include "definitions.hpp"  // opcodeIdx 之类
+#include "tokens.hpp"
+#include "definitions.hpp"
 
 #include <sstream>
 #include <unordered_map>
@@ -16,6 +16,9 @@ namespace uxntal {
 
 struct Uxn {
     std::unordered_map<std::string, std::vector<int>> linesForToken;
+    bool hasMain = false;
+    int lambdaCount = 0;
+    std::vector<int> lambdaStack;
 };
 
 std::string stripComments(const std::string &text);
@@ -27,6 +30,8 @@ inline Token makeToken(TokenType type, int64_t val, int sz = 1, int r = 0, int k
     token.type = type;
     token.val = val;
     token.sz = sz;
+    token.r = r;
+    token.k = k;
     token.name = name;
     return token;
 }
@@ -34,4 +39,4 @@ inline Token makeToken(TokenType type, int64_t val, int sz = 1, int r = 0, int k
 std::vector<Token> parseUxntalProgram(const std::string& programFile, Uxn& uxn);
 
 
-} 
+}
